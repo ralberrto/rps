@@ -1,5 +1,36 @@
 console.log("Hello, World!")
 
+function game() {
+    // This function creates a five-round game and scores results.
+    let userScore = 0,
+    computerScore = 0,
+    winnerDeclaration,
+    userWon;
+
+    // Each pass in the loop is a rock, paper, scissor round.
+    for (let i = 0; i < 5; i++) {
+        let = playerSelection = prompt("Rock, paper or scissors?", "Rock");
+        [winnerDeclaration, userWon] = declareWinner(playerSelection)
+        if (userWon === undefined) {
+//            userScore++; computerScore++;
+        }
+        else {
+            userWon ? userScore++ : computerScore++
+        }
+        console.log(winnerDeclaration)
+    }
+    // Reports the winner.
+    console.log(`Your score: ${userScore}, Computer's score: ${computerScore}`)
+    if (userScore === computerScore) {
+        console.log("It's a tie!")
+    }
+    else {
+        userScore > computerScore ? console.log("Congratulations, you've won!")
+        : console.log("You've lost!")
+    }
+
+}
+
 function isWinner(playerSelection, computerSelection) {
     // Determines whether the user won or not based on the selections of
     // both the user and the computer.
@@ -22,10 +53,11 @@ function declareWinner(playerSelection, computerSelection = computerPlay()) {
     playerSelection = playerSelection.substring(0, 1).toUpperCase() + playerSelection.substring(1).toLowerCase();
     let userWon = isWinner(playerSelection, computerSelection)
     if (userWon === undefined) {
-        return "It's a tie!"
+        return ["It's a tie!", userWon]
     }
     else {
-        return userWon ? `You win! ${playerSelection} beats ${computerSelection}` : `You lose! ${computerSelection} beats ${playerSelection}`
+        return userWon ? [`You win! ${playerSelection} beats ${computerSelection}`, userWon]
+        : [`You lose! ${computerSelection} beats ${playerSelection}`, userWon]
     }
 }
 
