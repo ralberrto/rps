@@ -18,6 +18,8 @@ function isWinner(playerSelection, computerSelection) {
 
 function declareWinner(playerSelection, computerSelection = computerPlay()) {
     // Outputs a message to delcare whether it's a tie or the user won or lost.
+    playerSelection = playerSelection.trim();
+    playerSelection = playerSelection.substring(0, 1).toUpperCase() + playerSelection.substring(1).toLowerCase();
     let userWon = isWinner(playerSelection, computerSelection)
     if (userWon === undefined) {
         return "It's a tie!"
