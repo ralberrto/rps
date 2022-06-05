@@ -37,6 +37,7 @@ function declareWinner(playerSelection, computerSelection = computerPlay()) {
     else {
         return userWon ? `You win! ${playerSelection} beats ${computerSelection}` : `You lose! ${computerSelection} beats ${playerSelection}`
     }
+}
 
 function computerPlay() {
     // This function randomly returns Rock, Paper, Scissors.
