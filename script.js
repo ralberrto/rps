@@ -1,35 +1,23 @@
 console.log("Hello, World!")
 
 function isWinner(playerSelection, computerSelection) {
+    // Determines whether the user won or not based on the selections of
+    // both the user and the computer.
     if (playerSelection === computerSelection) {
         return undefined
     }
     switch (playerSelection) {
         case "Rock":
-            if (computerSelection === "Paper") {
-                return false 
-            }
-            else if (computerSelection === "Scissors") {
-                return true
-            }
+            return computerSelection === "Scissors" ? true : false
         case "Paper":
-            if (computerSelection === "Scissors") {
-                return false
-            }
-            else if (computerSelection === "Rock") {
-                return true
-            }
+            return computerSelection === "Rock" ? true : false
         case "Scissors":
-            if (computerSelection === "Rock") {
-                return false
-            }
-            else if (computerSelection === "Paper") {
-                return true
-            }
+            return computerSelection === "Paper" ? true : false
     }
 }
 
 function declareWinner(playerSelection, computerSelection = computerPlay()) {
+    // Outputs a message to delcare whether it's a tie or the user won or lost.
     let userWon = isWinner(playerSelection, computerSelection)
     if (userWon === undefined) {
         return "It's a tie!"
