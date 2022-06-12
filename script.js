@@ -1,5 +1,8 @@
 console.log("Hello, World!")
 
+const buttons = Array.from(document.querySelectorAll("button"))
+buttons.forEach((button => button.addEventListener("click", playRound)))
+
 function game() {
     // This function creates a five-round game and scores results.
     let userScore = 0,
@@ -47,17 +50,21 @@ function isWinner(playerSelection, computerSelection) {
     }
 }
 
-function playRound(playerSelection, computerSelection = computerPlay()) {
+function playRound() {
     // Outputs a message to delcare whether it's a tie or the user won or lost.
-    playerSelection = playerSelection.trim();
-    playerSelection = playerSelection.substring(0, 1).toUpperCase() + playerSelection.substring(1).toLowerCase();
+    let playerSelection = this.textContent;
+    let computerSelection = computerPlay()
     let userWon = isWinner(playerSelection, computerSelection)
     if (userWon === undefined) {
-        return ["It's a tie!", userWon]
+        message = "It's a tie!" 
+        console.log(message)
+        return [message, userWon]
     }
     else {
-        return userWon ? [`You win! ${playerSelection} beats ${computerSelection}`, userWon]
-        : [`You lose! ${computerSelection} beats ${playerSelection}`, userWon]
+        message = userWon ? `You win! ${playerSelection} beats ${computerSelection}`
+                : `You lose! ${playerSelection} is beaten by ${computerSelection}`
+        console.log(message)
+        return [message, userWon]
     }
 }
 
