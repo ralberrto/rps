@@ -10,7 +10,7 @@ function game() {
     // Each pass in the loop is a rock, paper, scissor round.
     for (let i = 0; i < 5; i++) {
         let = playerSelection = prompt("Rock, paper or scissors?", "Rock");
-        [winnerDeclaration, userWon] = declareWinner(playerSelection)
+        [winnerDeclaration, userWon] = playRound(playerSelection)
         if (userWon === undefined) {
 //            userScore++; computerScore++;
         }
