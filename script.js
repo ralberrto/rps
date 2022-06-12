@@ -63,6 +63,10 @@ function playRound() {
     else {
         message = userWon ? `You win! ${playerSelection} beats ${computerSelection}`
                 : `You lose! ${playerSelection} is beaten by ${computerSelection}`
+        if (playerSelection === "Scissors") {
+            message = message.replace(" is ", " are ")
+            message = message.replace(" beats ", " beat ")
+        }
         console.log(message)
         return [message, userWon]
     }
