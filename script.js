@@ -5,7 +5,7 @@ buttons.forEach((button => button.addEventListener("click", playRound)))
 
 const resultsContainer = document.querySelector("#results-container");
 const messageDisplayer = document.createElement("p")
-resultsContainer.appendChild(messageDisplayer)
+resultsContainer.prepend(messageDisplayer)
 
 function game() {
     // This function creates a five-round game and scores results.
