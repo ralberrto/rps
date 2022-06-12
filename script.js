@@ -3,6 +3,10 @@ console.log("Hello, World!")
 const buttons = Array.from(document.querySelectorAll("button"))
 buttons.forEach((button => button.addEventListener("click", playRound)))
 
+const resultsContainer = document.querySelector("#results-container");
+const messageDisplayer = document.createElement("p")
+resultsContainer.appendChild(messageDisplayer)
+
 function game() {
     // This function creates a five-round game and scores results.
     let userScore = 0,
@@ -56,8 +60,8 @@ function playRound() {
     let computerSelection = computerPlay()
     let userWon = isWinner(playerSelection, computerSelection)
     if (userWon === undefined) {
-        message = "It's a tie!" 
-        console.log(message)
+        let message = "It's a tie!" 
+        messageDisplayer.textContent = message
         return [message, userWon]
     }
     else {
@@ -67,7 +71,7 @@ function playRound() {
             message = message.replace(" is ", " are ")
             message = message.replace(" beats ", " beat ")
         }
-        console.log(message)
+        messageDisplayer.textContent = message
         return [message, userWon]
     }
 }
