@@ -7,7 +7,7 @@ const buttons = Array.from(document.querySelectorAll("button"))
 buttons.forEach(button => button.addEventListener("click", game))
 
 const resultsContainer = document.querySelector("#results-container");
-const messageDisplayer = document.createElement("p")
+const messageDisplayer = document.querySelector("#results-container p")
 const [userMarker, computerMarker] = [document.querySelector("#results-container .marker.user"),
     document.querySelector("#results-container .marker.computer")]
 const markers = [userMarker, computerMarker];
@@ -31,9 +31,13 @@ function game() {
     }
 
     if (userScore === 5 || computerScore === 5) {
-        userScore === 5 ? messageDisplayer.textContent = "You win!" :
-           messageDisplayer.textContent = "You lose!";
-        [userScore, computerScore, gameCounter] = Array(3).fill(0)
+        userScore === 5 ? messageDisplayer.textContent = "You won, but you're a loser!" :
+           messageDisplayer.textContent = "You're a loser!";
+        messageDisplayer.setAttribute("style", "font-size: 28px;" +
+            "font-weight: bolder; color:  #9e0910")
+        userScore = 0;
+        computerScore = 0;
+        gameCounter = 0;
     }
 }
 
@@ -55,6 +59,8 @@ function isWinner(playerSelection, computerSelection) {
 
 function playRound(playerSelection) {
     // Outputs a message to delcare whether it's a tie or the user won or lost.
+    messageDisplayer.setAttribute("style", "font-size: large;" +
+        "font-weight: normal;")
     let computerSelection = computerPlay()
     let userWon = isWinner(playerSelection, computerSelection)
     if (userWon === undefined) {
