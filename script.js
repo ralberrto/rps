@@ -1,41 +1,40 @@
 console.log("Hello, World!")
 
+let gameCounter = 0;
+let userScore = 0,
+    computerScore = 0;
 const buttons = Array.from(document.querySelectorAll("button"))
-buttons.forEach((button => button.addEventListener("click", playRound)))
+buttons.forEach(button => button.addEventListener("click", game))
 
 const resultsContainer = document.querySelector("#results-container");
 const messageDisplayer = document.createElement("p")
+const [userMarker, computerMarker] = [document.querySelector("#results-container .marker.user"),
+    document.querySelector("#results-container .marker.computer")]
+const markers = [userMarker, computerMarker];
+markers.forEach(marker => marker.textContent = "0")
 resultsContainer.prepend(messageDisplayer)
 
 function game() {
-    // This function creates a five-round game and scores results.
-    let userScore = 0,
-    computerScore = 0,
-    winnerDeclaration,
-    userWon;
-
-    // Each pass in the loop is a rock, paper, scissor round.
-    for (let i = 0; i < 5; i++) {
-        let = playerSelection = prompt("Rock, paper or scissors?", "Rock");
-        [winnerDeclaration, userWon] = playRound(playerSelection)
-        if (userWon === undefined) {
-//            userScore++; computerScore++;
-        }
-        else {
-            userWon ? userScore++ : computerScore++
-        }
-        console.log(winnerDeclaration)
+    if (gameCounter++ === 0) {
+        markers.forEach(marker => marker.textContent = 0)
     }
-    // Reports the winner.
-    console.log(`Your score: ${userScore}, Computer's score: ${computerScore}`)
-    if (userScore === computerScore) {
-        console.log("It's a tie!")
+    // This function creates a five-round game and scores results.
+    let userWon = playRound(this.textContent);
+
+    if (userWon === undefined) {
+
     }
     else {
-        userScore > computerScore ? console.log("Congratulations, you've won!")
-        : console.log("You've lost!")
+        userWon ? userScore++ : computerScore++;
+        userMarker.textContent = userScore
+        computerMarker.textContent = computerScore
     }
 
+    if (userScore === 5 || computerScore === 5) {
+        userScore === 5 ? messageDisplayer.textContent = "You win!" :
+           messageDisplayer.textContent = "You lose!";
+        [userScore, computerScore, gameCounter] = Array(3).fill(0)
+    }
 }
 
 function isWinner(playerSelection, computerSelection) {
@@ -54,15 +53,14 @@ function isWinner(playerSelection, computerSelection) {
     }
 }
 
-function playRound() {
+function playRound(playerSelection) {
     // Outputs a message to delcare whether it's a tie or the user won or lost.
-    let playerSelection = this.textContent;
     let computerSelection = computerPlay()
     let userWon = isWinner(playerSelection, computerSelection)
     if (userWon === undefined) {
         let message = "It's a tie!" 
         messageDisplayer.textContent = message
-        return [message, userWon]
+        return userWon
     }
     else {
         message = userWon ? `You win! ${playerSelection} beats ${computerSelection}`
@@ -72,7 +70,7 @@ function playRound() {
             message = message.replace(" beats ", " beat ")
         }
         messageDisplayer.textContent = message
-        return [message, userWon]
+        return userWon
     }
 }
 
