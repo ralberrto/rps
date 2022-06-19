@@ -1,0 +1,57 @@
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    height: 100%;
+    background-color: aquamarine;
+}
+
+body #button-container {
+    display: flex;
+}
+
+body #results-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#button-container button {
+    width: 150px;
+    height: 100px;
+    margin: 10px;
+    font-size: 20px;
+    color: white;
+    background-color: black;
+    font-weight: bolder;
+}
+
+#button-container button:hover {
+    scale: 1.1;
+}
+
+#results-container p {
+    display: flex;
+    font-size: large;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    width: 450px;
+    margin: 18px 0px;
+}
+
+#results-container #score-container {
+    display: flex;
+    align-items: center;
+}
+
+.player.user {
+    margin-right: auto;
+}
+
+.marker {
+    border: 5px solid black;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 30%;
+}
